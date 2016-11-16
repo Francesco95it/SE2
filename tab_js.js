@@ -1,9 +1,10 @@
-var btn = document.getElementById("button");
+var open = document.getElementById("openAdd");
+var add = document.getElementById("addItem");
 var ttab = document.getElementById("topTable");
 var botdiv = document.getElementById("botDiv");
 
 var ttabVal = [
-    ['A', 'B', 'C'],
+    ['Candele', 'Cera', 'Micce'],
     [1, 2, 3]
 ];
 
@@ -18,8 +19,7 @@ for (var i=0; i<2; i++){
 
 function readBot(){
     return [
-        [document.getElementById("r0c0").value, document.getElementById("r0c1").value, document.getElementById("r0c2").value],
-        [document.getElementById("r1c0").value, document.getElementById("r1c1").value, document.getElementById("r1c2").value]
+        [document.getElementById("r0c0").value, document.getElementById("r0c1").value]
     ];
 }
 
@@ -38,36 +38,32 @@ function buildTable(){
 function checktabs() {
     var btab = readBot();
     var flag = true;
-    
-    for (var i=0; i<3; i++){
-        for(var j=0; j<ttabCells; j++){
-            if (btab[0][i] != undefined){                
-                if (btab[0][i] == ttabVal[0][j]){
-                    ttabVal[1][j] = parseInt(ttabVal[1][j]) + parseInt(btab[1][i]);
-                    flag=false;
-                }
+    for(var j=0; j<ttabCells; j++){
+        if (btab[0][1] != undefined && btab[0][0] != undefined && btab[0][1] != NaN && btab[0][0] != NaN){                
+            if (btab[0][0] == ttabVal[0][j]){
+                ttabVal[1][j] = parseInt(ttabVal[1][j]) + parseInt(btab[0][1]);
+                flag=false;
             }
         }
-        console.log(flag);
-        if (flag){
-            ttabVal[0][ttabCells] = btab[0][i];
-            ttabVal[1][ttabCells] = btab[1][i];
-            ttabCells += 1;
-            console.log(ttab);
-        }
-        flag=true;
     }
+    console.log(flag);
+    if (flag){
+        ttabVal[0][ttabCells] = btab[0][0];
+        ttabVal[1][ttabCells] = btab[0][1];
+        ttabCells += 1;
+        console.log(ttab);
+    }
+    flag=true;
     buildTable();
+    hide();
 }
 
-//new
-
-
-var showed = false;
+function hide(){
+    botdiv.style.visibility = 'hidden';    
+    add.style.visibility = 'hidden';     
+}
 
 function show () {
-    botdiv.style.visibility = 'visible';
-    if (showed) {checktabs();}
-    showed = true;
-    
+    botdiv.style.visibility = 'visible';    
+    add.style.visibility = 'visible';    
 }

@@ -14,22 +14,18 @@
             </tbody>
         </table>
         
-        <button id="button" onclick="show()">Click me</button>
+        <button id="openAdd" onclick="show()">Click me</button>
         
         <div id="botDiv" style="visibility: hidden;">
             <table id="botTable">
                 <tr>
-                    <td><input id="r0c0" type="text" size="1" maxlength="1"></td>
-                    <td><input id="r0c1" type="text" size="1" maxlength="1"></td>
-                    <td><input id="r0c2" type="text" size="1" maxlength="1"></td>
-                </tr>
-                <tr>
-                    <td><input id="r1c0" type="text" size="1" maxlength="1"></td>
-                    <td><input id="r1c1" type="text" size="1" maxlength="1"></td>
-                    <td><input id="r1c2" type="text" size="1" maxlength="1"></td>
+                    <td><input id="r0c0" type="text" placeholder="Item"></td>
+                    <td><input id="r0c1" type="text" placeholder="Quantity"></td>
                 </tr>
             </table>
         </div>
+        
+        <button id="addItem" onclick="checktabs()" style="visibility: hidden">Add to warehouse</button>
         
         <script src="tab_js.js"></script>
         
