@@ -59,30 +59,24 @@ function buildTable(){
 
 function checktabs() {
     var btab = readBot();
-    var limits = checklimits();
-    var checkall = (btab[0][1] != undefined && btab[0][0] != undefined && btab[0][1] != NaN && btab[0][0] != NaN && limits);
+    var checkall = (btab[0][1] != undefined && btab[0][0] != undefined && btab[0][1] != NaN && btab[0][0] != NaN);
     var flag = true;
     for(var j=0; j<ttabCells; j++){
         if (checkall){
-            if (btab[0][0] == ttabVal[0][j] && limval>(parseInt(ttabVal[1][j]) + parseInt(btab[0][1]))){
+            if (btab[0][0] == ttabVal[0][j]){
                 ttabVal[1][j] = parseInt(ttabVal[1][j]) + parseInt(btab[0][1]);
                 flag=false;
             }
         }
     }
     if (flag && checkall){
-        if(limval>btab[0][1]){
-            console.log("limval: " + limval + " " + typeof(limval) + "btab[0][1]" + btab[0][1] + typeof(btab[0][1]));
-            ttabVal[0][ttabCells] = btab[0][0];
-            ttabVal[1][ttabCells] = btab[0][1];
-            ttabCells += 1;
-        }
-        else{
-            alert("Exceed limits");
-        }
+        ttabVal[0][ttabCells] = btab[0][0];
+        ttabVal[1][ttabCells] = btab[0][1];
+        ttabCells += 1;
     }
     flag=true;
     buildTable();
+    checklimits();
     hide();
 }
 
@@ -91,7 +85,6 @@ function checktabs() {
  */
 function changelimit(){
     limval = parseInt(limit.value);
-    console.log("Limval:" + limval + typeof(limval));
     checklimits();
 }
 
@@ -102,13 +95,12 @@ function changelimit(){
  */
 function checklimits(){
     var flag=true;
-    for(i=0; i<ttabCells; i++){
-        if(limval<ttabVal[1][i]){
-            console.log('lim: ' + limval + ', ttabval:' + ttabVal[1][i]);
-            flag=false;
-        }
+    var tot=0;
+    for (i=0; i<ttabCells; i++) tot+=ttabVal[1][i];
+    if(limval<tot){
+        flag=false;
+        alert("Exceeded limits");
     }
-    if(!flag) alert("Exceeded limits");
     return flag;
 }
 
