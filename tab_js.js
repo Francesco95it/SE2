@@ -16,6 +16,7 @@ var ttabVal = [
 
 var ttabCells = 3;
 
+
 for (var i=0; i<2; i++){
     var row = ttab.insertRow(i);
     for(var j=0; j<ttabCells; j++){
@@ -23,12 +24,19 @@ for (var i=0; i<2; i++){
     }
 }
 
+/**
+ * @brief Reads the values stored in the inputs of the bottom table
+ * @return Values of the bottom table (= the items to be stored)
+ */
 function readBot(){
     return [
         [document.getElementById("r0c0").value, parseInt(document.getElementById("r0c1").value)]
     ];
 }
 
+/**
+ * @brief Update the HTML top table to show the updated values of the matrixes
+ */
 function buildTable(){
     ttab.deleteRow(0);
     ttab.deleteRow(0);
@@ -43,11 +51,9 @@ function buildTable(){
 
 
 /**
- * @brief Some brief description.
- * @param [in|out] type parameter_name Parameter description.
- * @param [in|out] type parameter_name Parameter description.
- * @return Description of returned value.
+ * @brief Checks the top and the bottom tabs and updates matrixes
  */
+
 function checktabs() {
     var btab = readBot();
     var limits = checklimits();
@@ -77,12 +83,20 @@ function checktabs() {
     hide();
 }
 
+/**
+ * @brief Changes the value of limval (the limit of items to be stored)
+ */
 function changelimit(){
     limval = parseInt(limit.value);
     console.log("Limval:" + limval + typeof(limval));
     checklimits();
 }
 
+
+/**
+ * @brief Checks if limits are respected for all values in the warehouse
+ * @return A boolean value, true if limits are respected, false if not
+ */
 function checklimits(){
     var flag=true;
     for(i=0; i<ttabCells; i++){
@@ -95,11 +109,18 @@ function checklimits(){
     return flag;
 }
 
+
+/**
+ * @brief Hides the bottom table and the add to warehouse button
+ */
 function hide(){
     botdiv.style.visibility = 'hidden';    
     add.style.visibility = 'hidden';     
 }
 
+/**
+ * @brief Changes the visibility of the bottom table and warehouse button to show them
+ */
 function show () {
     checklimits();
     botdiv.style.visibility = 'visible';    
