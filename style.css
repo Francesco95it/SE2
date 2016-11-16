@@ -1,0 +1,14 @@
+#topTable {
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+#topTable, .tTab td{
+    
+    border: 1px solid black;
+}
+
+.tTab td{
+    padding: 5px;
+    text-align: center;    
+}
