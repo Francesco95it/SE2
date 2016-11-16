@@ -5,18 +5,21 @@ var botdiv = document.getElementById("botDiv");
 var limit = document.getElementById("limitin");
 var limitbtn = document.getElementById("limitbtn");
 
+
+//set the warehouse limit
 var limval = 30;
 limit.value = 30;
 
-
+//set items in warehouse when it opens
 var ttabVal = [
     ['Candele', 'Cera', 'Micce'],
     [1, 2, 3]
 ];
 
+//set number of items in warehouse when it opens
 var ttabCells = 3;
 
-
+//create the initial table of the first items in the warehouse
 for (var i=0; i<2; i++){
     var row = ttab.insertRow(i);
     for(var j=0; j<ttabCells; j++){
